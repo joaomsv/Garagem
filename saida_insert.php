@@ -16,12 +16,11 @@ $data_e = strtotime($row['data_hora_entrada']);
 
 $tempo = $data_s - $data_e;
 
-$dias = floor($tempo / 86400);
-$horas   = floor(($tempo - ($dias * 86400)) / 3600) + $dias*24;
-$minutos = floor(($tempo - ($dias * 86400) - ($horas * 3600))/60) + $horas*60;
-$seconds = "00";
+$horas = floor($tempo / 3600);
+$minutos = floor(($tempo / 60) % 60);
+$segundos = $tempo % 60;
 
-$tempo = $horas.$minutos.$seconds;
+$tempo = $horas.$minutos.$segundos;
 $sql = "UPDATE entrada SET tempo = '".$tempo."' WHERE id = ".$_POST['placa']." ";
 
 $valor = 0;
