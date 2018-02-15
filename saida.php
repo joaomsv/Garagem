@@ -1,4 +1,15 @@
-
+<?php
+	session_start();
+	if (isset($_SESSION['url'])) {
+		if (isset($_SESSION['user_role_id']) && ($_SESSION['user_role_id']=="1" || $_SESSION['user_role_id']=="3")) {
+			$_SESSION['url'] = $_SERVER['REQUEST_URI'];
+		}else {
+			header("location: " .$_SESSION['url']);
+		}
+	}else {
+		header("location: index.php");
+	}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,9 +52,9 @@
 
 				<label class="label-input100" for="placa">Placa *</label>
 				<div class="wrap-input100 " data-validate="Type first name">
-					<?php 
+					<?php
 						require 'conexao.php';
-						$sql = "SELECT * FROM entrada where status = 0"; 
+						$sql = "SELECT * FROM entrada where status = 0";
 						$result = mysqli_query($conn,$sql);
 						echo "<select required class='form-control input100' id ='placa' name='placa'>";
 						echo "<option value=''>Selecione a placa</option>";
@@ -56,12 +67,12 @@
 				</div>
 				<div id="dados" name="dados" class="wrap-input100 ">
 				</div>
-				
+
 
 				<div class="container-contact100-form-btn">
 					<button class="contact100-form-btn">
 						Registrar Saída
-					</button>			
+					</button>
 				</div>
 			</form>
 

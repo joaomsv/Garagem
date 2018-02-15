@@ -1,4 +1,15 @@
-
+<?php
+	session_start();
+	if (isset($_SESSION['url'])) {
+		if (isset($_SESSION['user_role_id']) && ($_SESSION['user_role_id']=="1" || $_SESSION['user_role_id']=="3")) {
+			$_SESSION['url'] = $_SERVER['REQUEST_URI'];
+		}else {
+			header("location: " .$_SESSION['url']);
+		}
+	}else {
+		header("location: index.php");
+	}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,9 +57,9 @@
 
 				<label class="label-input100" for="marca">Marca *</label>
 				<div class="wrap-input100 validate-input" data-validate = "Selecione a marca">
-					<?php 
+					<?php
 						require 'conexao.php';
-						$sql = "SELECT * FROM marcas"; 
+						$sql = "SELECT * FROM marcas";
 						$result = mysqli_query($conn,$sql);
 						echo "<select required class='form-control input100' id ='Marca' name='Marca'>";
 						echo "<option value=''>Selecione a marca</option>";
@@ -69,9 +80,9 @@
 
 				<label class="label-input100" for="sala">Sala *</label>
 				<div class="wrap-input100 validate-input" data-validate = "Selecione a sala">
-					<?php 
+					<?php
 						require 'conexao.php';
-						$sql = "SELECT * FROM salas"; 
+						$sql = "SELECT * FROM salas";
 						$result = mysqli_query($conn,$sql);
 						echo "<select required class='form-control input100' name='Sala'>";
 						echo "<option value=''>Selecione a sala</option>";
@@ -86,7 +97,7 @@
 				<div class="container-contact100-form-btn">
 					<button class="contact100-form-btn">
 						Registrar entrada
-					</button>			
+					</button>
 				</div>
 			</form>
 
