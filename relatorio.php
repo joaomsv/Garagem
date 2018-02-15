@@ -1,4 +1,15 @@
-
+<?php
+	session_start();
+	if (isset($_SESSION['url'])) {
+		if (isset($_SESSION['user_role_id']) && ($_SESSION['user_role_id']=="1" || $_SESSION['user_role_id']=="2")) {
+			$_SESSION['url'] = $_SERVER['REQUEST_URI'];
+		}else {
+			header("location: " .$_SESSION['url']);
+		}
+	}else {
+		header("location: index.php");
+	}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +54,7 @@
 				<div class="wrap-input100 " data-validate="Type first name">
 					<?php
 						require 'conexao.php';
-						$sql = "SELECT DISTINCT YEAR(data_hora_saida) FROM `entrada` WHERE status = 1"; 
+						$sql = "SELECT DISTINCT YEAR(data_hora_saida) FROM `entrada` WHERE status = 1";
 						$result = mysqli_query($conn,$sql);
 						echo "<select required class='form-control input100' id ='ano' name='ano'>";
 						echo "<option value=''>Selecione o ano</option>";
