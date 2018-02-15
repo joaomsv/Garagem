@@ -41,9 +41,9 @@
 
 				<label class="label-input100" for="placa">Ano *</label>
 				<div class="wrap-input100 " data-validate="Type first name">
-					<?php 
+					<?php
 						require 'conexao.php';
-						$sql = "SELECT DISTINCT YEAR(data_hora_saida) FROM `entrada` WHERE 1"; 
+						$sql = "SELECT DISTINCT YEAR(data_hora_saida) FROM `entrada` WHERE status = 1"; 
 						$result = mysqli_query($conn,$sql);
 						echo "<select required class='form-control input100' id ='ano' name='ano'>";
 						echo "<option value=''>Selecione o ano</option>";
@@ -54,14 +54,14 @@
 
 					?>
 				</div>
-				
+
 				<select required class='form-control input100' id='mes' name='mes'>
 				<option value=''>--</option>
-				</select>							
+				</select>
 				<div class="container-contact100-form-btn">
 					<button class="contact100-form-btn">
 						Gerar Relatório
-					</button>			
+					</button>
 				</div>
 			</form>
 
