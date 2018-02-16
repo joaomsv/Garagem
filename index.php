@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(isset($_SESSION['user_roles_id']))
+	if(isset($_SESSION['user_role_id']))
 	{
 		header("location: " .$_SESSION['url']);
 	}

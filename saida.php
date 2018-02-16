@@ -37,7 +37,6 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<link rel="stylesheet" type="text/css" href="css_login/main.css">
 <!--===============================================================================================-->
 
 <script src="js/jquery-3.3.1.js"></script>
@@ -45,7 +44,7 @@
 </head>
 <body>
 	<?php
-	include 'header.html';
+	include 'header.php';
 	?>
 	<div class="container-contact100">
 		<div class="wrap-contact100">

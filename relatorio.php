@@ -1,4 +1,15 @@
-
+<?php
+	session_start();
+	if (isset($_SESSION['url'])) {
+		if (isset($_SESSION['user_role_id']) && ($_SESSION['user_role_id']=="1" || $_SESSION['user_role_id']=="2")) {
+			$_SESSION['url'] = $_SERVER['REQUEST_URI'];
+		}else {
+			header("location: " .$_SESSION['url']);
+		}
+	}else {
+		header("location: index.php");
+	}
+ ?>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -33,7 +44,7 @@
 </head>
 <body>
 	<?php
-	include 'header.html';
+	include 'header.php';
 	?>
 	<div class="container-contact100">
 		<div class="wrap-contact100">

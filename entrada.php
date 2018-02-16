@@ -43,7 +43,7 @@
 </head>
 <body>
 	<?php
-	include 'header.html';
+	include 'header.php';
 	?>
 	<div class="container-contact100">
 		<div class="wrap-contact100">

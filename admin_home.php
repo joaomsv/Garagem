@@ -17,5 +17,6 @@
 	<button onclick="window.location.href='logout.php'" type="logout" name="logout">Logout</button>
 	<button onclick="window.location.href='entrada.php'" type="entrada" name="entrada">Entrada de Veículos</button>
 	<button onclick="window.location.href='saida.php'" type="saida" name="saida">Saída de Veículos</button>
+	<button onclick="window.location.href='relatorio.php'" type="saida" name="saida">Relatório</button>
 </body>
 </html>

@@ -15,12 +15,15 @@
 		$_SESSION['user_role_id'] = $user["role_id"];
     switch ($user["role_id"]) {
       case '1':
+				$_SESSION['home'] = "admin_home.php";
         echo "<script>document.location.href='admin_home.php';</script>";
         break;
       case '2':
+				$_SESSION['home'] = 'mod_home.php';
         echo "<script>document.location.href='mod_home.php';</script>";
         break;
       case '3':
+				$_SESSION['home'] = 'user_home.php';
         echo "<script>document.location.href='user_home.php';</script>";
         break;
     }
