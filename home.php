@@ -30,6 +30,9 @@
 				<div class="intro-heading text-uppercase">Bem-Vindo <?php echo $_SESSION['user_name'];?></div>
 				 <div class="btn-group">
 					 <?php
+					 if ($_SESSION['user_role_id'] == '1') {
+					 	echo '<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="registrar.php">Registrar Usuário</a>';
+					 }
  						if ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '3') {
  							echo '<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="entrada.php">Registrar Entrada</a>
  							<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="saida.php">Registrar Saída</a>';
