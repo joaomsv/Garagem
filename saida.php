@@ -37,12 +37,16 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css_login/main.css">
 <!--===============================================================================================-->
 
 <script src="js/jquery-3.3.1.js"></script>
 <script src="js/chained.js"></script>
 </head>
 <body>
+	<?php
+	include 'header.html';
+	?>
 	<div class="container-contact100">
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" id="saida" name="saida" method="post" action="saida_insert.php">
@@ -77,60 +81,10 @@
 			</form>
 
 			<div class="contact100-more flex-col-c-m" style="background-image: url('images/bg-01.jpg');">
-				<div class="flex-w size1 p-b-47">
-					<div class="txt1 p-r-25">
-						<span class="lnr lnr-map-marker"></span>
-					</div>
 
-					<div class="flex-col size2">
-						<span class="txt1 p-b-20">
-							Address
-						</span>
-
-						<span class="txt2">
-							Mada Center 8th floor, 379 Hudson St, New York, NY 10018 US
-						</span>
-					</div>
-				</div>
-
-				<div class="dis-flex size1 p-b-47">
-					<div class="txt1 p-r-25">
-						<span class="lnr lnr-phone-handset"></span>
-					</div>
-
-					<div class="flex-col size2">
-						<span class="txt1 p-b-20">
-							Lets Talk
-						</span>
-
-						<span class="txt3">
-							+1 800 1236879
-						</span>
-					</div>
-				</div>
-
-				<div class="dis-flex size1 p-b-47">
-					<div class="txt1 p-r-25">
-						<span class="lnr lnr-envelope"></span>
-					</div>
-
-					<div class="flex-col size2">
-						<span class="txt1 p-b-20">
-							General Support
-						</span>
-
-						<span class="txt3">
-							contact@example.com
-						</span>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-	<div id="dropDownSelect1"></div>
 
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
