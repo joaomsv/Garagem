@@ -13,7 +13,9 @@
 		$_SESSION['user_password'] = $user["password"];
 		$_SESSION['user_cpf'] = $user["cpf"];
 		$_SESSION['user_role_id'] = $user["role_id"];
-    switch ($user["role_id"]) {
+		$_SESSION['home'] = "home.php";
+		echo "<script>document.location.href='home.php';</script>";
+    /*switch ($user["role_id"]) {
       case '1':
 				$_SESSION['home'] = "admin_home.php";
         echo "<script>document.location.href='admin_home.php';</script>";
@@ -26,7 +28,7 @@
 				$_SESSION['home'] = 'user_home.php';
         echo "<script>document.location.href='user_home.php';</script>";
         break;
-    }
+    }*/
   }
   else
   {

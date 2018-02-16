@@ -9,23 +9,25 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <?php
-        if (strpos($_SESSION['url'], "entrada.php") === false && ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '3'))
-        {
-          echo '<li class="nav-item">
-                  <a class="nav-link" href="entrada.php">Entrada de Veículos</a>
-                </li>';
-        }
-        if (strpos($_SESSION['url'], "saida.php") === false && ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '3'))
-        {
-          echo '<li class="nav-item">
-                  <a class="nav-link" href="saida.php">Saída de Veículos</a>
-                </li>';
-        }
-        if (strpos($_SESSION['url'], "relatorio.php") === false && ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '2'))
-        {
-          echo '<li class="nav-item">
-                  <a class="nav-link" href="relatorio.php">Relatórios</a>
-                </li>';
+        if (strpos($_SESSION['url'], "home") === false) {
+          if (strpos($_SESSION['url'], "entrada.php") === false && ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '3'))
+          {
+            echo '<li class="nav-item">
+                    <a class="nav-link" href="entrada.php">Entrada de Veículos</a>
+                  </li>';
+          }
+          if (strpos($_SESSION['url'], "saida.php") === false && ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '3'))
+          {
+            echo '<li class="nav-item">
+                    <a class="nav-link" href="saida.php">Saída de Veículos</a>
+                  </li>';
+          }
+          if (strpos($_SESSION['url'], "relatorio.php") === false && ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '2'))
+          {
+            echo '<li class="nav-item">
+                    <a class="nav-link" href="relatorio.php">Relatórios</a>
+                  </li>';
+          }
         }
          ?>
       </ul>
