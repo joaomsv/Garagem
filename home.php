@@ -1,14 +1,14 @@
 <?php
 	session_start();
-	/*if (isset($_SESSION['url'])) {
-		if (isset($_SESSION['user_role_id']) && $_SESSION['user_role_id']=="1") {
+	if (isset($_SESSION['url'])) {
+		if (isset($_SESSION['user_role_id'])) {
 			$_SESSION['url'] = $_SERVER['REQUEST_URI'];
 		}else {
 			header("location: " .$_SESSION['url']);
 		}
 	}else {
 		header("location: index.php");
-	}*/
+	}
  ?>
 <!DOCTYPE html>
 <html>
@@ -26,12 +26,13 @@
 	<?php include 'header.php' ?>
 		<div class="container">
 			<div class="intro-text">
-				<div class="intro-lead-in"> Hoje é <?php echo date("d/m/Y")?></div>
+				<div class="intro-lead-in"> Hoje é <?php date_default_timezone_set('America/Sao_Paulo'); echo date("d/m/Y")?></div>
 				<div class="intro-heading text-uppercase">Bem-Vindo <?php echo $_SESSION['user_name'];?></div>
-				 <div class="btn-group">
+				 <div class="btn-group btn-group-lg">
 					 <?php
 					 if ($_SESSION['user_role_id'] == '1') {
-					 	echo '<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="registrar.php">Registrar Usuário</a>';
+					 	echo '<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="registrar.php">Registrar Usuário</a>
+						<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="remover.php">Remover Usuário</a>';
 					 }
  						if ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '3') {
  							echo '<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="entrada.php">Registrar Entrada</a>

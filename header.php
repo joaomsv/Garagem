@@ -9,10 +9,15 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <?php
-        if (strpos($_SESSION['url'], "home") === false) {
+        if (strpos($_SESSION['url'], "home.php") === false) {
+          if (strpos($_SESSION['url'], "remover.php") === false && $_SESSION['user_role_id'] == '1') {
+            echo '<li class="nav-item">
+                    <a class="nav-link" href="remover.php">Remover Usuário</a>
+                  </li>';
+          }
           if (strpos($_SESSION['url'], "registrar.php") === false && $_SESSION['user_role_id'] == '1') {
             echo '<li class="nav-item">
-                    <a class="nav-link" href="registrar.php">Registar Usuário</a>
+                    <a class="nav-link" href="registrar.php">Registrar Usuário</a>
                   </li>';
           }
           if (strpos($_SESSION['url'], "entrada.php") === false && ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '3'))
