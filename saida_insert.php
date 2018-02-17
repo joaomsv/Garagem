@@ -53,7 +53,7 @@ mysqli_query($conn, $status);
 if(mysqli_query($conn, $sql)){
     echo "<script type='text/javascript'>
 	alert('Saída registrada com sucesso');
-	//document.location.href='saida.php';
+	document.location.href='saida.php';
 </script>";	// MUDAR PARA document.location.href='/' QUANDO MIGRAR PRO SERVIDOR
 
 } else{
