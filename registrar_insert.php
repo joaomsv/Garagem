@@ -1,6 +1,5 @@
 <?php
 require 'conexao.php';
-include 'registrar.php';
 // Check connection
 if($conn === false){
     die("ERROR: Não foi possível estabelecer conexao " . mysqli_connect_error());
