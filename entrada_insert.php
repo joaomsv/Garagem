@@ -1,19 +1,36 @@
 <?php
 require 'conexao.php';
+//include 'entrada.php';
 // Check connection
 if($conn === false){
     die("ERROR: Não foi possível estabelecer conexao " . mysqli_connect_error());
 }
- date_default_timezone_set('America/Sao_Paulo');
- $hora_entrada = date("Y-m-d H:i:s");
-// Attempt insert query execution
-$sql = "INSERT INTO entrada (placa, marca_id, modelo_id, sala_id, data_hora_entrada) VALUES ('".$_POST["placa"]."',
-							 '".$_POST["Marca"]."', '".$_POST["Modelo"]."', '".$_POST["Sala"]."', '".$hora_entrada."')";
+
+$query = $conn->query("INSERT INTO marcas (name) SELECT '".$_POST["Marca"]."' FROM dual WHERE NOT EXISTS ( SELECT * FROM marcas WHERE (name) = ('".$_POST["Marca"]."') )");
+//Inserir ser não existir
+
+$query3 = ("SELECT id FROM marcas WHERE name = '".$_POST["Marca"]."' ");
+$result3  = mysqli_query($conn,$query3);
+$row3 = mysqli_fetch_array($result3);
+
+
+$query2 = $conn->query("INSERT INTO modelos (name,marca_id) SELECT '".$_POST["Modelo"]."','".$row3['id']."' FROM dual WHERE NOT EXISTS ( SELECT * FROM modelos WHERE (name) = ('".$_POST["Modelo"]."') )");
+//Inserir ser não existir
+
+$query4 = ("SELECT id FROM modelos WHERE name = '".$_POST["Modelo"]."' ");
+$result4  = mysqli_query($conn,$query4);
+$row4 = mysqli_fetch_array($result4);
+
+date_default_timezone_set('America/Sao_Paulo');
+$hora_entrada = date("Y-m-d H:i:s");
+
+$sql = "INSERT INTO entrada (placa, marca_id, modelo_id, sala_id, data_hora_entrada) VALUES ('".$_POST["placaentrada"]."',
+							 '".$row3['id']."', '".$row4['id']."', '".$_POST["Sala"]."', '".$hora_entrada."')";
 
 echo "<form style='display: hidden' action='print.php' method='POST' id='form'>";
 echo "  <input type='hidden' id='var1' name='var1' value='".$hora_entrada."'/>                 ";
 echo "  <input type='hidden' id='var2' name='var2' value=''/>                 ";
-echo "</form>							 									  ";
+echo "</form>";
 
 if(mysqli_query($conn, $sql)){
 

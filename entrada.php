@@ -52,33 +52,13 @@
 					Entrada de Veículo
 				</span>
 
-				<label class="label-input100" for="placa">Placa *</label>
-				<div class="wrap-input100 " data-validate="Type first name">
-					<input title="Três letras e quatro números" required id="placa" class="input100" type="text" name="placa" pattern="[A-Za-z]{3}[0-9]{4}" placeholder="Ex:abc-1234">
+				<label class="label-input100" for="placaentrada">Placa *</label>
+				<div class="wrap-input100 " data-validate="Digite a placa">
+					<input title="Três letras e quatro números" required id="placaentrada" class="input100" type="text" name="placaentrada" placeholder="Ex:abc-1234">
 					<span class="focus-input100"></span>
 				</div>
 
-				<label class="label-input100" for="marca">Marca *</label>
-				<div class="wrap-input100 validate-input" data-validate = "Selecione a marca">
-					<?php
-						require 'conexao.php';
-						$sql = "SELECT * FROM marcas";
-						$result = mysqli_query($conn,$sql);
-						echo "<select required class='form-control input100' id ='Marca' name='Marca'>";
-						echo "<option value=''>Selecione a marca</option>";
-						while ($row = mysqli_fetch_array($result)) {
-							echo "<option value='" . $row['id'] . "'>" . $row['name'] . "</option>";
-						}
-						echo "</select>";
-
-					?>
-				</div>
-
-				<label class="label-input100" for="modelo">Modelo *</label>
-				<div class="wrap-input100">
-				<select required class='form-control input100' id='Modelo' name='Modelo'>
-				<option value=''>Selecione a marca primeiro</option>
-				</select>
+				<div id="dados" name="dados" class="wrap-input100 ">
 				</div>
 
 				<label class="label-input100" for="sala">Sala *</label>
@@ -118,6 +98,21 @@
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>
+	<script src="js/jquery.mask.js"></script>
+
+	<script>
+	$(document).ready(function(){
+  $('#placaentrada').mask('SSS-0000', {
+            'translation': {
+                S: {pattern: /[A-Za-z]/},
+                0: {pattern: /[0-9]/}
+            }
+            ,onKeyPress: function (value, event) {
+                event.currentTarget.value = value.toUpperCase();
+            }
+});
+	});
+	</script>
 	<script>
 		$(".selection-2").select2({
 			minimumResultsForSearch: 20,
