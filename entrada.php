@@ -46,8 +46,8 @@
 	include 'header.php';
 	?>
 	<div class="container-contact100">
-		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" id="entrada" name="entrada" method="post" action="entrada_insert.php">
+		<div class="wrap-contact200" >
+			<form class="contact100-form validate-form " id="entrada" name="entrada" method="post" action="entrada_insert.php">
 				<span class="contact100-form-title">
 					Entrada de Veículo
 				</span>
