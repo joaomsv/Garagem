@@ -1,11 +1,14 @@
 <?php
 require 'conexao.php';
-include 'saida.php';
+//include 'saida.php';
 // Check connection
 if($conn === false){
     die("ERROR: Não foi possível estabelecer conexao " . mysqli_connect_error());
 }
-$update = " UPDATE entrada SET data_hora_saida= NOW() WHERE id = ".$_POST['placa']." ";
+
+date_default_timezone_set('America/Sao_Paulo');
+$hora_saida = date("Y-m-d H:i:s");
+$update = " UPDATE entrada SET data_hora_saida= '".$hora_saida."' WHERE id = ".$_POST['placa']." ";
 mysqli_query($conn, $update);
 
  $query = $conn->query("SELECT * FROM entrada WHERE id = ".$_POST['placa']." ");
@@ -53,7 +56,7 @@ mysqli_query($conn, $status);
 if(mysqli_query($conn, $sql)){
     echo "<script type='text/javascript'>
 	alert('Saída registrada com sucesso');
-	//document.location.href='saida.php';
+	document.location.href='entrada.php';
 </script>";	// MUDAR PARA document.location.href='/' QUANDO MIGRAR PRO SERVIDOR
 
 } else{

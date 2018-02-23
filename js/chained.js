@@ -1,20 +1,18 @@
 $(document).ready(function(){
-    $('#Marca').on('change',function(){
-        var marcaID = $(this).val();
-        if(marcaID){
+    $('#placaentrada').on('change',function(){
+        var placaentrada = $(this).val();
+        if(placaentrada){
             $.ajax({
                 type:'POST',
                 url:'ajaxDataEntrada.php',
-                data:'marca_id='+marcaID,
+                data:'placaentrada='+placaentrada,
                 success:function(html){
-                    $('#Modelo').html(html);                    
+                    $('#dadosentrada').html(html);
                 }
-            }); 
-        }else{
-            $('#Modelo').html('<option value="">Selecione a marca primeiro</option>');            
+            });
         }
     });
-	
+
 	  $('#placa').on('change',function(){
         var placaID = $(this).val();
         if(placaID){
@@ -25,10 +23,10 @@ $(document).ready(function(){
                 success:function(html){
                     $('#dados').html(html);
                 }
-            }); 
+            });
         }
     });
-	
+
 	  $('#ano').on('change',function(){
         var anoID = $(this).val();
         if(anoID){
@@ -39,7 +37,7 @@ $(document).ready(function(){
                 success:function(html){
                     $('#mes').html(html);
                 }
-            }); 
+            });
         }
     });
 });

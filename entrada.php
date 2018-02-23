@@ -46,43 +46,23 @@
 	include 'header.php';
 	?>
 	<div class="container-contact100">
-		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" method="post" action="entrada_insert.php">
+		<div class="wrap-contact200" >
+			<form class="contact100-form validate-form " id="entrada" name="entrada" method="post" action="entrada_insert.php">
 				<span class="contact100-form-title">
 					Entrada de Veículo
 				</span>
 
-				<label class="label-input100" for="placa">Placa *</label>
-				<div class="wrap-input100 " data-validate="Type first name">
-					<input title="Três letras e quatro números" required id="placa" class="input100" type="text" name="placa" pattern="[A-Za-z]{3}[0-9]{4}" placeholder="Ex:abc-1234">
+				<label class="label-input100" for="placaentrada">Placa *</label>
+				<div class="wrap-input100 " data-validate="Digite a placa">
+					<input title="Três letras e quatro números" required id="placaentrada" class="input100" type="text" name="placaentrada" placeholder="Ex:abc-1234">
 					<span class="focus-input100"></span>
 				</div>
 
-				<label class="label-input100" for="marca">Marca *</label>
-				<div class="wrap-input100 validate-input" data-validate = "Selecione a marca">
-					<?php
-						require 'conexao.php';
-						$sql = "SELECT * FROM marcas";
-						$result = mysqli_query($conn,$sql);
-						echo "<select required class='form-control input100' id ='Marca' name='Marca'>";
-						echo "<option value=''>Selecione a marca</option>";
-						while ($row = mysqli_fetch_array($result)) {
-							echo "<option value='" . $row['id'] . "'>" . $row['name'] . "</option>";
-						}
-						echo "</select>";
-
-					?>
-				</div>
-
-				<label class="label-input100" for="modelo">Modelo *</label>
-				<div class="wrap-input100">
-				<select required class='form-control input100' id='Modelo' name='Modelo'>
-				<option value=''>Selecione a marca primeiro</option>
-				</select>
+				<div id="dadosentrada" name="dadosentrada" class="wrap-input100">
 				</div>
 
 				<label class="label-input100" for="sala">Sala *</label>
-				<div class="wrap-input100 validate-input" data-validate = "Selecione a sala">
+				<div class="wrap-input100" >
 					<?php
 						require 'conexao.php';
 						$sql = "SELECT * FROM salas";
@@ -104,8 +84,37 @@
 				</div>
 			</form>
 
-			<div class="contact100-more flex-col-c-m" style="background-image: url('images/bg-01.jpg');">
-			</div>
+			<form class="contact100-form validate-form" id="saida" name="saida" method="post" action="saida_insert.php">
+				<span class="contact100-form-title">
+					Saída de Veículo
+				</span>
+
+				<label class="label-input100" for="placa">Placa *</label>
+				<div class="wrap-input100 " data-validate="Type first name">
+					<?php
+						require 'conexao.php';
+						$sql = "SELECT * FROM entrada where status = 0";
+						$result = mysqli_query($conn,$sql);
+						echo "<select required class='form-control input100' id ='placa' name='placa'>";
+						echo "<option value='0'>Selecione a placa</option>";
+						while ($row = mysqli_fetch_array($result)) {
+							echo "<option value='" . $row['id'] . "'>" . $row['placa'] . "</option>";
+						}
+						echo "</select>";
+
+					?>
+				</div>
+				<div id="dados" name="dados" class="wrap-input100 ">
+				</div>
+
+
+				<div class="container-contact100-form-btn">
+					<button class="contact100-form-btn">
+						Registrar Saída
+					</button>
+				</div>
+			</form>
+
 		</div>
 	</div>
 
@@ -118,6 +127,25 @@
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>
+	<script src="js/jquery.mask.js"></script>
+
+	<script>
+	$(document).ready(function(){
+  $('#placaentrada').mask('SSS-0000', {
+            'translation': {
+                S: {pattern: /[A-Za-z]/},
+                0: {pattern: /[0-9]/}
+            }
+            ,onKeyPress: function (value, event) {
+                event.currentTarget.value = value.toUpperCase();
+            }
+});
+
+document.getElementById("saida").style.display="block";
+
+document.getElementById("entrada").style.display="block";
+	});
+	</script>
 	<script>
 		$(".selection-2").select2({
 			minimumResultsForSearch: 20,
