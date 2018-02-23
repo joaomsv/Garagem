@@ -10,7 +10,6 @@
 		header("location: index.php");
 	}
  ?>
-<!DOCTYPE html>
 <html lang="pt">
 <head>
 	<title>Registrar Entrada</title>
