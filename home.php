@@ -34,8 +34,8 @@
 						 <?php
   					 	if ($_SESSION['user_role_id'] == '1') {
   					 		echo '<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="registrar.php">Registrar Usuário</a>
-  							<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="remover.php">Remover Usuário</a>
-								<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="alterar.php">Alterar Usuário</a>';
+								<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="alterar.php">Alterar Usuário</a>
+  							<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="remover.php">Remover Usuário</a>';
   					 	}
   						?>
 					 </div>
