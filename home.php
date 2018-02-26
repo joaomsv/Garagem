@@ -29,16 +29,22 @@
 			<div class="intro-text">
 				<div class="intro-lead-in"> Hoje é <?php echo date("d/m/Y")?></div>
 				<div class="intro-heading text-uppercase">Bem-Vindo <?php echo $_SESSION['user_name'];?></div>
-				 <div class="btn-group">
-					 <?php
-					 if ($_SESSION['user_role_id'] == '1') {
-					 	echo '<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="registrar.php">Registrar Usuário</a>';
-					 }
+				 <div class="btn-group-vertical btn-group-lg">
+					 <div class="btn-group btn-group-lg">
+						 <?php
+  					 	if ($_SESSION['user_role_id'] == '1') {
+  					 		echo '<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="registrar.php">Registrar Usuário</a>
+  							<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="remover.php">Remover Usuário</a>
+								<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="alterar.php">Alterar Usuário</a>';
+  					 	}
+  						?>
+					 </div>
+				   <?php
+					 	if ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '2') {
+						  echo '<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="relatorio.php">Relatórios</a>';
+					 	}
  						if ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '3') {
  							echo '<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="entrada.php">Registrar Entrada/Saida</a>';
- 						}
- 						if ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '2') {
- 							echo '<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="relatorio.php">Relatórios</a>';
  						}
  					 ?>
 				 </div>

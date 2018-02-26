@@ -14,16 +14,26 @@
                     <a class="nav-link" href="registrar.php">Registar Usuário</a>
                   </li>';
           }
-          if (strpos($_SESSION['url'], "entrada.php") === false && ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '3'))
-          {
+          if (strpos($_SESSION['url'], "alterar.php") === false && $_SESSION['user_role_id'] == '1') {
             echo '<li class="nav-item">
-                    <a class="nav-link" href="entrada.php">Entrada/Saida de Veiculos</a>
+                    <a class="nav-link" href="alterar.php">Alterar Usuário</a>
+                  </li>';
+          }
+          if (strpos($_SESSION['url'], "remover.php") === false && $_SESSION['user_role_id'] == '1') {
+            echo '<li class="nav-item">
+                    <a class="nav-link" href="remover.php">Remover Usuário</a>
                   </li>';
           }
           if (strpos($_SESSION['url'], "relatorio.php") === false && ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '2'))
           {
             echo '<li class="nav-item">
                     <a class="nav-link" href="relatorio.php">Relatórios</a>
+                  </li>';
+          }
+          if (strpos($_SESSION['url'], "entrada.php") === false && ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '3'))
+          {
+            echo '<li class="nav-item">
+                    <a class="nav-link" href="entrada.php">Entrada/Saida de Veiculos</a>
                   </li>';
           }
         }

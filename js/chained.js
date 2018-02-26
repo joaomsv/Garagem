@@ -40,4 +40,18 @@ $(document).ready(function(){
             });
         }
     });
+
+    $('#info').on('change',function(){
+        var userID = $(this).val();
+        if(userID){
+            $.ajax({
+                type:'POST',
+                url:'ajaxDataAlterar.php',
+                data:'id='+userID,
+                success:function(html){
+                    $('#alterar').html(html);
+                }
+            });
+        }
+    });
 });
