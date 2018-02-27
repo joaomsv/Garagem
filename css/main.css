@@ -201,7 +201,6 @@ iframe {
   flex-wrap: wrap;
   align-items: stretch;
   flex-direction: row-reverse;
-
 }
 
 .wrap-contact200 {
@@ -257,6 +256,7 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   padding: 56px 55px 63px 55px;
+  
 }
 
 .contact100-form-title {
@@ -528,8 +528,4 @@ textarea.input100 {
     visibility: visible;
     opacity: 1;
   }
-}
-
-#saida {
-    display: none;
 }

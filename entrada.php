@@ -140,6 +140,17 @@
             }
 });
 
+$('#placa').on('change',function(){
+	if ($(this).val()) {
+		 $("#entrada").hide();
+		 $("#dados").show();
+	}
+	else {
+		 $("#entrada").show();
+		 $("#dados").hide();
+	}
+});
+
 $("#placaentrada").keyup(function () {
    if ($(this).val()) {
       $("#saida").hide();
@@ -148,6 +159,8 @@ $("#placaentrada").keyup(function () {
    else {
       $("#saida").show();
 			$("#dadosentrada").hide();
+			$("#MarcaEntrada").val('');
+			$("#ModeloEntrada").val('');
    }
 });
 
