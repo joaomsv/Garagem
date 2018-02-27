@@ -89,13 +89,13 @@
 				</span>
 
 				<label class="label-input100" for="placa">Placa *</label>
-				<div class="wrap-input100 " data-validate="Type first name">
+				<div class="wrap-input100 " data-validate="Entre com a placa">
 					<?php
 						require 'conexao.php';
 						$sql = "SELECT * FROM entrada where status = 0";
 						$result = mysqli_query($conn,$sql);
-						echo "<select required class='form-control input100' id ='placa' name='placa'>";
-						echo "<option value='0'>Selecione a placa</option>";
+						echo "<select class='form-control input100' required id ='placa' name='placa'>";
+						echo "<option value=''>Selecione a placa</option>";
 						while ($row = mysqli_fetch_array($result)) {
 							echo "<option value='" . $row['id'] . "'>" . $row['placa'] . "</option>";
 						}
@@ -140,17 +140,23 @@
             }
 });
 
+$("#placaentrada").keyup(function () {
+   if ($(this).val()) {
+      $("#saida").hide();
+			$("#dadosentrada").show();
+   }
+   else {
+      $("#saida").show();
+			$("#dadosentrada").hide();
+   }
+});
+
 document.getElementById("saida").style.display="block";
 
 document.getElementById("entrada").style.display="block";
 	});
 	</script>
-	<script>
-		$(".selection-2").select2({
-			minimumResultsForSearch: 20,
-			dropdownParent: $('#dropDownSelect1')
-		});
-	</script>
+
 <!--===============================================================================================-->
 	<script src="vendor/daterangepicker/moment.min.js"></script>
 	<script src="vendor/daterangepicker/daterangepicker.js"></script>

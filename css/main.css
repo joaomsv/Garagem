@@ -529,3 +529,7 @@ textarea.input100 {
     opacity: 1;
   }
 }
+
+#saida {
+    display: none;
+}
