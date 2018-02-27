@@ -53,7 +53,7 @@
 
 				<label class="label-input100" for="placaentrada">Placa *</label>
 				<div class="wrap-input100 " data-validate="Digite a placa">
-					<input title="Três letras e quatro números" required id="placaentrada" class="input100" type="text" name="placaentrada" placeholder="Ex:abc-1234">
+					<input pattern="[A-Za-z]{3}-[0-9]{4}" title="Três letras e quatro números" required id="placaentrada" class="input100" type="text" name="placaentrada" placeholder="Ex:abc-1234">
 					<span class="focus-input100"></span>
 				</div>
 
