@@ -71,7 +71,7 @@
 
 				<label class="label-input100" for="Sala">Sala *</label>
 				<select class='form-control input100' id='salarelatorio' name='salarelatorio'>
-				<option value=''>Todas</option>
+				<option value=1>Todas</option>
 				</select>
 
 				<label class="label-input100" for="Mes">Mes *</label>
@@ -130,11 +130,15 @@
 
 		$('#salarelatorio').on('change',function(){
 			if ($(this).val()) {
-				 $("#dia").html('');				 
-			}
-			else {
 				 $("#dia").html('');
-				 $("#mes").html('');
+				 $("#dia").append("<option selected value=''>Todos</option>");
+			}
+		});
+
+		$('#mes').on('change',function(){
+			if (!$(this).val()) {
+				 $("#dia").html('');
+				 $("#dia").append("<option selected value=''>Todos</option>");
 			}
 		});
 

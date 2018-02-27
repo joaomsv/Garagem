@@ -1,7 +1,7 @@
 <?php
 require 'conexao.php';
 
-if(!empty($_POST['salarelatorio']))
+if(!empty($_POST['salarelatorio']) && $_POST['salarelatorio']!=1)
 {
 $salarecebida[] = $_POST['salarelatorio'];
 }

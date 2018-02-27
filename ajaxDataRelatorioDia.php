@@ -2,10 +2,13 @@
 //Include the database configuration file
 include 'conexao.php';
 
-if(!empty($_POST["mes"])){
+if(!empty($_POST["mes"]) && $_POST["salarelatorio"]!=1){
     //Fetch all state data
     $query = $conn->query("SELECT DISTINCT DAY(data_hora_saida) FROM entrada WHERE MONTH(data_hora_saida) = ".$_POST['mes']." and sala_id = ".$_POST['salarelatorio']." ORDER BY DAY(data_hora_saida) ASC");
-
+}
+else {
+  $query = $conn->query("SELECT DISTINCT DAY(data_hora_saida) FROM entrada WHERE MONTH(data_hora_saida) = ".$_POST['mes']." and sala_id = sala_id ORDER BY DAY(data_hora_saida) ASC");
+}
     //Count total number of rows
     $rowCount = $query->num_rows;
 
@@ -18,5 +21,5 @@ if(!empty($_POST["mes"])){
     }else{
         echo '<option value="Dados inexistentes">Dados inexistentes</option>';
     }
-}
+
 ?>

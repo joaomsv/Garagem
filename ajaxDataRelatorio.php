@@ -10,7 +10,7 @@ if(!empty($_POST["ano"])){
     $rowCount = $query->num_rows;
 
     if($rowCount > 0){
-        echo '<option value="">Todas</option>';
+        echo '<option value="1">Todas</option>';
         while($row = $query->fetch_assoc()){
             echo '<option value="'.$row['sala_id'].'">'.$row['sala_id'].'</option>';
         }

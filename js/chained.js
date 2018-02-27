@@ -38,15 +38,24 @@ $(document).ready(function(){
                     $('#salarelatorio').html(html);
                 }
             });
+            $.ajax({
+                type:'POST',
+                url:'ajaxDataRelatorioMes.php',
+                data:'ano='+anoID,
+                success:function(html){
+                    $('#mes').html(html);
+                }
+            });
         }
     });
     $('#salarelatorio').on('change',function(){
         var salarelatorioID = $(this).val();
+        var ano = $('#ano').val()
         if(salarelatorioID){
             $.ajax({
                 type:'POST',
                 url:'ajaxDataRelatorioMes.php',
-                data:'salarelatorio='+salarelatorioID,
+                data:{salarelatorio:salarelatorioID, ano:ano},
                 success:function(html){
                     $('#mes').html(html);
                 }
