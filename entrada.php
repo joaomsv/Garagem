@@ -46,7 +46,7 @@
 	?>
 	<div class="container-contact100">
 		<div class="wrap-contact200" >
-			<form class="contact100-form validate-form " id="entrada" name="entrada" method="post" action="entrada_insert.php">
+			<form autocomplete="off" class="contact100-form validate-form " id="entrada" name="entrada" method="post" action="entrada_insert.php">
 				<span class="contact100-form-title">
 					Entrada de Veículo
 				</span>
@@ -76,14 +76,14 @@
 					?>
 				</div>
 
-				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn">
+				<div class="container-contact100-form-btn" id='botaoentrada'>
+					<button class="contact100-form-btn" onClick="return empty()">
 						Registrar entrada
 					</button>
 				</div>
 			</form>
 
-			<form class="contact100-form validate-form" id="saida" name="saida" method="post" action="saida_insert.php">
+			<form autocomplete="off" class="contact100-form validate-form" id="saida" name="saida" method="post" action="saida_insert.php">
 				<span class="contact100-form-title">
 					Saída de Veículo
 				</span>
@@ -151,6 +151,14 @@ $('#placa').on('change',function(){
 	}
 });
 
+$('#entrada').submit(function()
+{
+    if ($.trim($("#MarcaEntrada").val()) === "" || $.trim($("#ModeloEntrada").val()) === "") {
+        alert('Por favor, aguarde os dados do veículo');
+    return false;
+    }
+});
+
 $("#placaentrada").keyup(function () {
    if ($(this).val()) {
       $("#saida").hide();
@@ -168,6 +176,19 @@ document.getElementById("saida").style.display="block";
 
 document.getElementById("entrada").style.display="block";
 	});
+
+	function empty() {
+    var x;
+    x = document.getElementById("MarcaEntrada").value;
+    if (x == "Nao Encontrado") {
+        alert("Entre com uma placa válida");
+        return false;
+    };
+		if (x == "") {
+        alert("Buscando veículo ...");
+        return false;
+    };
+}
 	</script>
 
 <!--===============================================================================================-->

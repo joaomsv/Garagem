@@ -35,7 +35,34 @@ $(document).ready(function(){
                 url:'ajaxDataRelatorio.php',
                 data:'ano='+anoID,
                 success:function(html){
+                    $('#salarelatorio').html(html);
+                }
+            });
+        }
+    });
+    $('#salarelatorio').on('change',function(){
+        var salarelatorioID = $(this).val();
+        if(salarelatorioID){
+            $.ajax({
+                type:'POST',
+                url:'ajaxDataRelatorioMes.php',
+                data:'salarelatorio='+salarelatorioID,
+                success:function(html){
                     $('#mes').html(html);
+                }
+            });
+        }
+    });
+    $('#mes').on('change',function(){
+        var mesID = $(this).val();
+        var salarelatorio = $('#salarelatorio').val();
+        if(mesID){
+            $.ajax({
+                type:'POST',
+                url:'ajaxDataRelatorioDia.php',
+                data:{mes:mesID, salarelatorio:salarelatorio},
+                success:function(html){
+                    $('#dia').html(html);
                 }
             });
         }

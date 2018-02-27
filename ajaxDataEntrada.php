@@ -29,7 +29,7 @@ try {
     {
       echo	"<label class='label-input100' for='MarcaEntrada'>Marca do Veículo</label>				 ";
       echo	"<div class='wrap-input100 validate-input' >  ";
-      echo	"<input class='input100' type='text' name='MarcaEntrada' id='MarcaEntrada' value='Nao Encontrado' readonly>  ";
+      echo	"<input class='input100' type='text' name='MarcaEntrada' id='MarcaEntrada' value='Nao Encontrado' readonly> ";
       echo	"</div>                                                                          ";
       echo  "                                                                                ";
       echo	"<label class='label-input100' for='ModeloEntrada'>Modelo do Veículo</label>            ";

@@ -1,7 +1,53 @@
 <?php
 require 'conexao.php';
 
-$query = $conn->query("SELECT *,TIME(tempo) FROM entrada WHERE YEAR(data_hora_saida) = '".$_POST['ano']."' and MONTH(data_hora_saida) = '".$_POST['mes']."' AND status = 1 ORDER BY sala_id ASC");
+if(!empty($_POST['salarelatorio']))
+{
+$salarecebida[] = $_POST['salarelatorio'];
+}
+else {
+  $salas = $conn->query("SELECT DISTINCT sala FROM salas WHERE 1 ");
+  $rowCount2 = $salas->num_rows;
+  if($rowCount2 > 0){
+      while($salarecebida2 = $salas->fetch_assoc())
+  {
+  $salarecebida[] = $salarecebida2['sala'];
+}
+}
+}
+if(!empty($_POST['mes']))
+{
+$mesrecebido[] = $_POST['mes'];
+}
+else {
+  $mes = $conn->query("SELECT DISTINCT MONTH(data_hora_saida) FROM entrada WHERE 1 ");
+  $rowCount3 = $mes->num_rows;
+
+  if($rowCount3 > 0){
+      while($mesrecebido2 = $mes->fetch_assoc())
+  {
+  $mesrecebido[] = $mesrecebido2['MONTH(data_hora_saida)'];
+}
+}
+}
+if(!empty($_POST['dia']))
+{
+$diarecebido[] = $_POST['dia'];
+}
+else {
+  $dia = $conn->query("SELECT DISTINCT DAY(data_hora_saida) FROM entrada WHERE 1 ");
+  $rowCount4 = $dia->num_rows;
+
+  if($rowCount4 > 0){
+      while($diarecebido2 = $dia->fetch_assoc())
+  {
+  $diarecebido[] = $diarecebido2['DAY(data_hora_saida)'];
+}
+}
+}
+
+
+$query = $conn->query("SELECT *,TIME(tempo) FROM entrada WHERE YEAR(data_hora_saida) = '".$_POST['ano']."' and MONTH(data_hora_saida) IN ('" . implode("','", $mesrecebido) . "') and DAY(data_hora_saida) IN ('" . implode("','", $diarecebido) . "') and sala_id IN ('" . implode("','", $salarecebida) . "') AND status = 1 ORDER BY sala_id ASC");
 $rowCount = $query->num_rows;
 
 require_once("fpdf/fpdf.php");
@@ -10,7 +56,7 @@ $pdf= new FPDF("P","pt","A4");
 $pdf->AddPage();
 
 $pdf->SetFont('arial','B',18);
-$pdf->Cell(0,5,"Relatorio Mensal",0,1,'C');
+$pdf->Cell(0,5,"Relatorio",0,1,'C');
 $pdf->Ln(30);
 
 if($rowCount > 0){

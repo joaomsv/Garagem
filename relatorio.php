@@ -48,13 +48,13 @@
 	?>
 	<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" id="relatorio" name="relatorio" method="post" action="mostrar_relatorio.php">
+			<form autocomplete="off" class="contact100-form validate-form" id="relatorio" name="relatorio" method="post" action="mostrar_relatorio.php">
 				<span class="contact100-form-title">
 					Relatório de Entrada e Saída
 				</span>
 
-				<label class="label-input100" for="placa">Ano *</label>
-				<div class="wrap-input100 " data-validate="Type first name">
+				<label class="label-input100" for="Ano">Ano *</label>
+				<div class="wrap-input100 " data-validate="Entre com o Ano">
 					<?php
 						require 'conexao.php';
 						$sql = "SELECT DISTINCT YEAR(data_hora_saida) FROM `entrada` WHERE status = 1";
@@ -69,9 +69,21 @@
 					?>
 				</div>
 
-				<select required class='form-control input100' id='mes' name='mes'>
-				<option value=''>--</option>
+				<label class="label-input100" for="Sala">Sala *</label>
+				<select class='form-control input100' id='salarelatorio' name='salarelatorio'>
+				<option value=''>Todas</option>
 				</select>
+
+				<label class="label-input100" for="Mes">Mes *</label>
+				<select class='form-control input100' id='mes' name='mes'>
+				<option value=''>Todos</option>
+				</select>
+
+				<label class="label-input100" for="Dia">Dia *</label>
+				<select class='form-control input100' id='dia' name='dia'>
+				<option value=''>Todos</option>
+				</select>
+
 				<div class="container-contact100-form-btn">
 					<button class="contact100-form-btn">
 						Gerar Relatório
@@ -115,6 +127,17 @@
 	  gtag('js', new Date());
 
 	  gtag('config', 'UA-23581568-13');
+
+		$('#salarelatorio').on('change',function(){
+			if ($(this).val()) {
+				 $("#dia").html('');				 
+			}
+			else {
+				 $("#dia").html('');
+				 $("#mes").html('');
+			}
+		});
+
 	</script>
 </body>
 </html>
