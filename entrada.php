@@ -45,74 +45,93 @@
 	include 'header.php';
 	?>
 	<div class="container-contact100">
-		<div class="wrap-contact200" >
-			<form autocomplete="off" class="contact100-form validate-form " id="entrada" name="entrada" method="post" action="entrada_insert.php">
-				<span class="contact100-form-title">
-					Entrada de Veículo
-				</span>
-
-				<label class="label-input100" for="placaentrada">Placa *</label>
-				<div class="wrap-input100 " data-validate="Digite a placa">
-					<input pattern="[A-Za-z]{3}-[0-9]{4}" title="Três letras e quatro números" required id="placaentrada" class="input100" type="text" name="placaentrada" placeholder="Ex:abc-1234">
-					<span class="focus-input100"></span>
+		<div class="wrap-contact200" style="background-image: url('images/bg-01.jpg');">
+			<div class="col">
+				<div class="row">
+					<button class="btn btn-primary mx-auto text-uppercase" style="width:92%" type="button" data-toggle="collapse" data-target="#collapseEntrada" aria-expanded="true" aria-controls="collapseEntrada">Entrada</button>
 				</div>
+				<div class="collapse" id="collapseEntrada">
+					<div class="card card-body">
+						<form autocomplete="off" class="contact100-form validate-form " id="entrada" name="entrada" method="post" action="entrada_insert.php">
+							<span class="contact100-form-title">
+								Entrada de Veículo
+							</span>
 
-				<div id="dadosentrada" name="dadosentrada" class="wrap-input100">
+							<label class="label-input100" for="placaentrada">Placa *</label>
+							<div class="wrap-input100 " data-validate="Digite a placa">
+								<input pattern="[A-Za-z]{3}-[0-9]{4}" title="Três letras e quatro números" required id="placaentrada" class="input100" type="text" name="placaentrada" placeholder="Ex:abc-1234">
+								<span class="focus-input100"></span>
+							</div>
+
+							<div id="dadosentrada" name="dadosentrada" class="wrap-input100">
+							</div>
+
+							<label class="label-input100" for="sala">Sala *</label>
+							<div class="wrap-input100" >
+								<?php
+									require 'conexao.php';
+									$sql = "SELECT * FROM salas";
+									$result = mysqli_query($conn,$sql);
+									echo "<select required class='form-control input100' name='Sala'>";
+									echo "<option value=''>Selecione a sala</option>";
+									while ($row = mysqli_fetch_array($result)) {
+										echo "<option value='" . $row['sala'] . "'>" . $row['sala'] . "</option>";
+									}
+									echo "</select>";
+
+								?>
+							</div>
+
+							<div class="container-contact100-form-btn" id='botaoentrada'>
+								<button class="contact100-form-btn" onClick="return empty()">
+									Registrar entrada
+								</button>
+							</div>
+						</form>
+					</div>
+
 				</div>
+			</div>
 
-				<label class="label-input100" for="sala">Sala *</label>
-				<div class="wrap-input100" >
-					<?php
-						require 'conexao.php';
-						$sql = "SELECT * FROM salas";
-						$result = mysqli_query($conn,$sql);
-						echo "<select required class='form-control input100' name='Sala'>";
-						echo "<option value=''>Selecione a sala</option>";
-						while ($row = mysqli_fetch_array($result)) {
-							echo "<option value='" . $row['sala'] . "'>" . $row['sala'] . "</option>";
-						}
-						echo "</select>";
-
-					?>
+			<div class="col">
+				<div class="row">
+					<button class="btn btn-primary mx-auto text-uppercase" style="width:92%" type="button" data-toggle="collapse" data-target="#collapseSaida" aria-expanded="true" aria-controls="collapseSaida">Saída</button>
 				</div>
+				<div class="collapse" id="collapseSaida">
+					<div class="card card-body">
+						<form autocomplete="off" class="contact100-form validate-form" id="saida" name="saida" method="post" action="saida_insert.php">
+							<span class="contact100-form-title">
+								Saída de Veículo
+							</span>
 
-				<div class="container-contact100-form-btn" id='botaoentrada'>
-					<button class="contact100-form-btn" onClick="return empty()">
-						Registrar entrada
-					</button>
+							<label class="label-input100" for="placa">Placa *</label>
+							<div class="wrap-input100 " data-validate="Entre com a placa">
+								<?php
+									require 'conexao.php';
+									$sql = "SELECT * FROM entrada where status = 0";
+									$result = mysqli_query($conn,$sql);
+									echo "<select class='form-control input100' required id ='placa' name='placa'>";
+									echo "<option value=''>Selecione a placa</option>";
+									while ($row = mysqli_fetch_array($result)) {
+										echo "<option value='" . $row['id'] . "'>" . $row['placa'] . "</option>";
+									}
+									echo "</select>";
+
+								?>
+							</div>
+							<div id="dados" name="dados" class="wrap-input100 ">
+							</div>
+
+
+							<div class="container-contact100-form-btn">
+								<button class="contact100-form-btn">
+									Registrar Saída
+								</button>
+							</div>
+						</form>
+					</div>
 				</div>
-			</form>
-
-			<form autocomplete="off" class="contact100-form validate-form" id="saida" name="saida" method="post" action="saida_insert.php">
-				<span class="contact100-form-title">
-					Saída de Veículo
-				</span>
-
-				<label class="label-input100" for="placa">Placa *</label>
-				<div class="wrap-input100 " data-validate="Entre com a placa">
-					<?php
-						require 'conexao.php';
-						$sql = "SELECT * FROM entrada where status = 0";
-						$result = mysqli_query($conn,$sql);
-						echo "<select class='form-control input100' required id ='placa' name='placa'>";
-						echo "<option value=''>Selecione a placa</option>";
-						while ($row = mysqli_fetch_array($result)) {
-							echo "<option value='" . $row['id'] . "'>" . $row['placa'] . "</option>";
-						}
-						echo "</select>";
-
-					?>
-				</div>
-				<div id="dados" name="dados" class="wrap-input100 ">
-				</div>
-
-
-				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn">
-						Registrar Saída
-					</button>
-				</div>
-			</form>
+			</div>
 
 		</div>
 	</div>
@@ -129,66 +148,80 @@
 	<script src="js/jquery.mask.js"></script>
 
 	<script>
-	$(document).ready(function(){
-  $('#placaentrada').mask('SSS-0000', {
-            'translation': {
-                S: {pattern: /[A-Za-z]/},
-                0: {pattern: /[0-9]/}
-            }
-            ,onKeyPress: function (value, event) {
-                event.currentTarget.value = value.toUpperCase();
-            }
-});
+		$('#collapseEntrada').collapse({
+	  	toggle: true
+		});
 
-$('#placa').on('change',function(){
-	if ($(this).val()) {
-		 $("#entrada").hide();
-		 $("#dados").show();
-	}
-	else {
-		 $("#entrada").show();
-		 $("#dados").hide();
-	}
-});
+		$('#collapseSaida').collapse({
+	  	toggle: true
+		});
 
-$('#entrada').submit(function()
-{
-    if ($.trim($("#MarcaEntrada").val()) === "" || $.trim($("#ModeloEntrada").val()) === "") {
-        alert('Por favor, aguarde os dados do veículo');
-    return false;
-    }
-});
+		$(document).ready(function(){
+	  $('#placaentrada').mask('SSS-0000', {
+	            'translation': {
+	                S: {pattern: /[A-Za-z]/},
+	                0: {pattern: /[0-9]/}
+	            }
+	            ,onKeyPress: function (value, event) {
+	                event.currentTarget.value = value.toUpperCase();
+	            }
+		});
 
-$("#placaentrada").keyup(function () {
-   if ($(this).val()) {
-      $("#saida").hide();
-			$("#dadosentrada").show();
-   }
-   else {
-      $("#saida").show();
-			$("#dadosentrada").hide();
-			$("#MarcaEntrada").val('');
-			$("#ModeloEntrada").val('');
-   }
-});
+		//hide entrada
+		$('#placa').on('change',function(){
+			if ($(this).val()) {
+				$("#collapseEntrada").collapse('hide');
+				//$("#entrada").hide();
+				//$("#dados").show();
+			}
+			else {
+				$("#collapseEntrada").collapse('show');
+				//$("#entrada").show();
+				//$("#dados").hide();
+			}
+		});
 
-document.getElementById("saida").style.display="block";
+		$('#entrada').submit(function()
+		{
+		    if ($.trim($("#MarcaEntrada").val()) === "" || $.trim($("#ModeloEntrada").val()) === "") {
+		        alert('Por favor, aguarde os dados do veículo');
+		    return false;
+		    }
+		});
 
-document.getElementById("entrada").style.display="block";
-	});
+		//hide saida
+		$("#placaentrada").keyup(function () {
+		   if ($(this).val()) {
+				 $("#collapseSaida").collapse('hide');
+		   	 //$("#saida").hide();
+				 //$("#dadosentrada").show();
+		   }
+		   else {
+				 $("#collapseSaida").collapse('show');
+		     //$("#saida").show();
+				 //$("#dadosentrada").hide();
+				 $("#MarcaEntrada").val('');
+				 $("#ModeloEntrada").val('');
+		   }
+		});
 
-	function empty() {
-    var x;
-    x = document.getElementById("MarcaEntrada").value;
-    if (x == "Nao Encontrado") {
-        alert("Entre com uma placa válida");
-        return false;
-    };
-		if (x == "") {
-        alert("Buscando veículo ...");
-        return false;
-    };
-}
+		document.getElementById("saida").style.display="block";
+
+		document.getElementById("entrada").style.display="block";
+			});
+
+			function empty() {
+		    var x;
+		    x = document.getElementById("MarcaEntrada").value;
+		    if (x == "Nao Encontrado") {
+		        alert("Entre com uma placa válida");
+		        return false;
+		    };
+				if (x == "") {
+		        alert("Buscando veículo ...");
+		        return false;
+		    };
+		}
 	</script>
 
 <!--===============================================================================================-->
