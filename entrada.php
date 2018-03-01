@@ -48,7 +48,7 @@
 		<div class="wrap-contact200" style="background-image: url('images/bg-01.jpg');">
 			<div class="col">
 				<div class="row">
-					<button class="btn btn-primary mx-auto text-uppercase" style="width:92%" type="button" data-toggle="collapse" data-target="#collapseEntrada" aria-expanded="true" aria-controls="collapseEntrada">Entrada</button>
+					<button class="btn btn-primary mx-auto text-uppercase" style="width:95%" type="button" data-toggle="collapse" data-target="#collapseEntrada" aria-expanded="true" aria-controls="collapseEntrada">Entrada</button>
 				</div>
 				<div class="collapse" id="collapseEntrada">
 					<div class="card card-body">
@@ -95,7 +95,7 @@
 
 			<div class="col">
 				<div class="row">
-					<button class="btn btn-primary mx-auto text-uppercase" style="width:92%" type="button" data-toggle="collapse" data-target="#collapseSaida" aria-expanded="true" aria-controls="collapseSaida">Saída</button>
+					<button class="btn btn-primary mx-auto text-uppercase" style="width:95%" type="button" data-toggle="collapse" data-target="#collapseSaida" aria-expanded="true" aria-controls="collapseSaida">Saída</button>
 				</div>
 				<div class="collapse" id="collapseSaida">
 					<div class="card card-body">
@@ -194,12 +194,12 @@
 		   if ($(this).val()) {
 				 $("#collapseSaida").collapse('hide');
 		   	 //$("#saida").hide();
-				 //$("#dadosentrada").show();
+				 $("#dadosentrada").show();
 		   }
 		   else {
 				 $("#collapseSaida").collapse('show');
 		     //$("#saida").show();
-				 //$("#dadosentrada").hide();
+				 $("#dadosentrada").hide();
 				 $("#MarcaEntrada").val('');
 				 $("#ModeloEntrada").val('');
 		   }
