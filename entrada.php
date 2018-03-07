@@ -45,7 +45,7 @@
 	include 'header.php';
 	?>
 	<div class="container-contact100">
-		<div class="wrap-contact200" style="background-image: url('images/bg-01.jpg');">
+		<div class="wrap-contact200" style="background-image: url('images/predio01.jpg'); background-size: cover;">
 			<div class="col">
 				<div class="row">
 					<button class="btn btn-primary mx-auto text-uppercase" style="width:95%" type="button" data-toggle="collapse" data-target="#collapseEntrada" aria-expanded="true" aria-controls="collapseEntrada">Entrada</button>
