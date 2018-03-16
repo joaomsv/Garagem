@@ -11,7 +11,7 @@
         if (strpos($_SESSION['url'], "home") === false) {
           if (strpos($_SESSION['url'], "registrar.php") === false && $_SESSION['user_role_id'] == '1') {
             echo '<li class="nav-item">
-                    <a class="nav-link" href="registrar.php">Registar Usuário</a>
+                    <a class="nav-link" href="registrar.php">Registrar Usuário</a>
                   </li>';
           }
           if (strpos($_SESSION['url'], "alterar.php") === false && $_SESSION['user_role_id'] == '1') {
