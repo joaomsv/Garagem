@@ -48,7 +48,7 @@
 		<div class="wrap-contact200" style="background-image: url('images/predio01.jpg'); background-size: cover;">
 			<div class="col">
 				<div class="row">
-					<button class="btn btn-primary mx-auto text-uppercase" style="width:95%" type="button" data-toggle="collapse" data-target="#collapseEntrada" aria-expanded="true" aria-controls="collapseEntrada">Entrada</button>
+					<button class="btn btn-secondary mx-auto text-uppercase" style="width:95%" type="button" data-toggle="collapse" data-target="#collapseEntrada" aria-expanded="true" aria-controls="collapseEntrada">Entrada</button>
 				</div>
 				<div class="collapse" id="collapseEntrada">
 					<div class="card card-body">
@@ -95,17 +95,26 @@
 
 			<div class="col">
 				<div class="row">
-					<button class="btn btn-primary mx-auto text-uppercase" style="width:95%" type="button" data-toggle="collapse" data-target="#collapseSaida" aria-expanded="true" aria-controls="collapseSaida">Saída</button>
+					<button class="btn btn-secondary mx-auto text-uppercase" style="width:95%" type="button" data-toggle="collapse" data-target="#collapseSaida" aria-expanded="true" aria-controls="collapseSaida">Saída</button>
 				</div>
 				<div class="collapse" id="collapseSaida">
 					<div class="card card-body">
+						<div class="btn-group btn-group-toggle" data-toggle="buttons" id="rad-saida">
+							<label class="btn btn-secondary active" id="btn-barcode">
+						    <input type="radio" name="options" checked> Codigo de Barra
+						  </label>
+						  <label class="btn btn-secondary"  id="list">
+						    <input type="radio" name="options"> Lista de Placa
+						  </label>
+						</div>
 						<form autocomplete="off" class="contact100-form validate-form" id="saida" name="saida" method="post" action="saida_insert.php">
 							<span class="contact100-form-title">
 								Saída de Veículo
 							</span>
 
 							<label class="label-input100" for="placa">Placa *</label>
-							<div class="wrap-input100 " data-validate="Entre com a placa">
+							<div class="wrap-input100" data-validate="Entre com a placa">
+								<span class="focus-input100"></span>
 								<?php
 									require 'conexao.php';
 									$sql = "SELECT * FROM entrada where status = 0";
@@ -122,13 +131,20 @@
 							<div id="dados" name="dados" class="wrap-input100 ">
 							</div>
 
-
 							<div class="container-contact100-form-btn">
 								<button class="contact100-form-btn">
 									Registrar Saída
 								</button>
 							</div>
 						</form>
+						<form class="contact100-form validate-form" id="barcode-saida" action="saida_insert.php" method="post">
+							<span class="contact100-form-title">Saída de Veículo</span>
+							<label class="label-input100" for="barcode">Codigo de Barra</label>
+							<div class="wrap-input100">
+								<input required id="barcode" class="input100" type="text" name="barcode">
+								<span class="focus-input100"></span>
+						</form>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -152,75 +168,89 @@
 	  	toggle: true
 		});
 
+		//$("#barcode-saida").hide();
+		$("#saida").hide();
+
 		$('#collapseSaida').collapse({
 	  	toggle: true
 		});
 
 		$(document).ready(function(){
-	  $('#placaentrada').mask('SSS-0000', {
-	            'translation': {
-	                S: {pattern: /[A-Za-z]/},
-	                0: {pattern: /[0-9]/}
-	            }
-	            ,onKeyPress: function (value, event) {
-	                event.currentTarget.value = value.toUpperCase();
-	            }
-		});
-
-		//hide entrada
-		$('#placa').on('change',function(){
-			if ($(this).val()) {
-				$("#collapseEntrada").collapse('hide');
-				//$("#entrada").hide();
-				//$("#dados").show();
-			}
-			else {
-				$("#collapseEntrada").collapse('show');
-				//$("#entrada").show();
-				//$("#dados").hide();
-			}
-		});
-
-		$('#entrada').submit(function()
-		{
-		    if ($.trim($("#MarcaEntrada").val()) === "" || $.trim($("#ModeloEntrada").val()) === "") {
-		        alert('Por favor, aguarde os dados do veículo');
-		    return false;
-		    }
-		});
-
-		//hide saida
-		$("#placaentrada").keyup(function () {
-		   if ($(this).val()) {
-				 $("#collapseSaida").collapse('hide');
-		   	 //$("#saida").hide();
-				 $("#dadosentrada").show();
-		   }
-		   else {
-				 $("#collapseSaida").collapse('show');
-		     //$("#saida").show();
-				 $("#dadosentrada").hide();
-				 $("#MarcaEntrada").val('');
-				 $("#ModeloEntrada").val('');
-		   }
-		});
-
-		document.getElementById("saida").style.display="block";
-
-		document.getElementById("entrada").style.display="block";
+		  $('#placaentrada').mask('SSS-0000', {
+		            'translation': {
+		                S: {pattern: /[A-Za-z]/},
+		                0: {pattern: /[0-9]/}
+		            }
+		            ,onKeyPress: function (value, event) {
+		                event.currentTarget.value = value.toUpperCase();
+		            }
 			});
 
-			function empty() {
-		    var x;
-		    x = document.getElementById("MarcaEntrada").value;
-		    if (x == "Nao Encontrado") {
-		        alert("Entre com uma placa válida");
-		        return false;
-		    };
-				if (x == "") {
-		        alert("Buscando veículo ...");
-		        return false;
-		    };
+			//$('#barcode-saida').
+
+			$('#list').click(function(){
+			    $("#saida").show();
+					$("#barcode-saida").hide();
+			});
+
+			$('#btn-barcode').click(function(){
+			    $("#saida").hide();
+					$("#barcode-saida").show();
+			});
+
+			//hide entrada
+			$('#placa').on('change',function(){
+				if ($(this).val()) {
+					$("#collapseEntrada").collapse('hide');
+					//$("#entrada").hide();
+					$("#dados").show();
+				}
+				else {
+					$("#collapseEntrada").collapse('show');
+					//$("#entrada").show();
+					$("#dados").hide();
+				}
+			});
+
+			//hide saida
+			$("#placaentrada").keyup(function () {
+			   if ($(this).val()) {
+					 $("#collapseSaida").collapse('hide');
+			   	 //$("#saida").hide();
+					 $("#dadosentrada").show();
+			   }
+			   else {
+					 $("#collapseSaida").collapse('show');
+			     //$("#saida").show();
+					 $("#dadosentrada").hide();
+					 $("#MarcaEntrada").val('');
+					 $("#ModeloEntrada").val('');
+			   }
+			});
+
+			$('#entrada').submit(function()
+			{
+			    if ($.trim($("#MarcaEntrada").val()) === "" || $.trim($("#ModeloEntrada").val()) === "") {
+			        alert('Por favor, aguarde os dados do veículo');
+			    return false;
+			    }
+			});
+
+			//document.getElementById("saida").style.display="block";
+			//document.getElementById("entrada").style.display="block";
+		});
+
+		function empty() {
+		   var x;
+		   x = document.getElementById("MarcaEntrada").value;
+		   if (x == "Nao Encontrado") {
+		       alert("Entre com uma placa válida");
+		       return false;
+		   };
+			 if (x == "") {
+		       alert("Buscando veículo ...");
+		       return false;
+		   };
 		}
 	</script>
 
