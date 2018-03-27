@@ -1,0 +1,6 @@
+Adicionar entrada MANUAL com modelo e marca de veículo manual
+Deixar em branco quando a entrada não registrar veículo automático!
+Moderador consegue modificar horário de saída de um veículo
+Adicionar campo de modificação com o usuário que modificou dados como a data/hora de saída
+
+
