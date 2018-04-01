@@ -77,6 +77,23 @@ $(document).ready(function(){
         }
     });
 
+    $('#dia').on('change',function(){
+        var diaID = $(this).val();
+        var sala_alterar_saida = $('#salarelatorio').val();
+        var anoID = $('#ano').val();
+        var mesID = $('#mes').val();
+        if(mesID){
+            $.ajax({
+                type:'POST',
+                url:'ajaxDataAlterarSaida.php',
+                data:{dia:diaID, sala:sala_alterar_saida, ano:anoID, mes:mesID},
+                success:function(html){
+                    $('#placa_saida').html(html);
+                }
+            });
+        }
+    });
+
     $('#info').on('change',function(){
         var userID = $(this).val();
         if(userID){

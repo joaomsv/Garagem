@@ -36,6 +36,17 @@ $horas = floor($tempo / 3600);
 $minutos = floor(($tempo / 60) % 60);
 $segundos = $tempo % 60;
 
+if($horas < 10)
+{
+  $horas = sprintf("%02d", $horas);//sprintf 02d = Dois digitos ---- 0 a esquerda
+}
+if ($minutos < 10) {
+  $minutos = sprintf("%02d", $minutos);
+}
+if ($segundos < 10) {
+  $segundos = sprintf("%02d", $segundos);
+}
+
 $tempo = $horas.$minutos.$segundos;
 $sql = "UPDATE entrada SET tempo = '".$tempo."' WHERE id = ".$_POST['placa']." ";
 
@@ -98,13 +109,13 @@ $segundos = $tempo % 60;
 
 if($horas < 10)
 {
-  $horas = sprintf("%02d", $horas);
+  $horas = sprintf("%02d", $horas);//sprintf 02d = Dois digitos ---- 0 a esquerda
 }
 if ($minutos < 10) {
   $minutos = sprintf("%02d", $minutos);
 }
 if ($segundos < 10) {
-  sprintf("%02d", $segundos);
+  $segundos = sprintf("%02d", $segundos);
 }
 
 $tempo = $horas.$minutos.$segundos;

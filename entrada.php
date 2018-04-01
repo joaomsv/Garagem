@@ -12,7 +12,7 @@
  ?>
 <html lang="pt">
 <head>
-	<title>Registrar Entrada</title>
+	<title>Entrada e Saída de Veículos</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -89,7 +89,6 @@
 							</div>
 						</form>
 					</div>
-
 				</div>
 			</div>
 
@@ -228,13 +227,14 @@
 			   }
 			});
 
+		/* AGUARDAR VEÍCULO CARREGAR PARA NÃO SALVAR EM BRANCO OU NÃO ENCONTRADO
 			$('#entrada').submit(function()
 			{
 			    if ($.trim($("#MarcaEntrada").val()) === "" || $.trim($("#ModeloEntrada").val()) === "") {
 			        alert('Por favor, aguarde os dados do veículo');
 			    return false;
 			    }
-			});
+			});*/
 
 			//document.getElementById("saida").style.display="block";
 			//document.getElementById("entrada").style.display="block";

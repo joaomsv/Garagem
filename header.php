@@ -30,6 +30,12 @@
                     <a class="nav-link" href="relatorio.php">Relatórios</a>
                   </li>';
           }
+          if (strpos($_SESSION['url'], "alterar_saida.php") === false && ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '2'))
+          {
+            echo '<li class="nav-item">
+                    <a class="nav-link" href="alterar_saida.php">Alterar Saída</a>
+                  </li>';
+          }
           if (strpos($_SESSION['url'], "entrada.php") === false && ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '3'))
           {
             echo '<li class="nav-item">
