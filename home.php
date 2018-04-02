@@ -39,10 +39,15 @@
   					 	}
   						?>
 					 </div>
-				   <?php
-					 	if ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '2') {
-						  echo '<a class="btn btn-primary text-uppercase js-scroll-trigger mb-2 rounded" href="relatorio.php">Relatórios</a>';
-					 	}
+					 <div class="btn-group btn-group-lg mb-2">
+					   <?php
+						 	if ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '2') {
+							  echo '<a class="btn btn-primary text-uppercase js-scroll-trigger rounded-left" href="relatorio.php">Relatórios</a>
+								<a class="btn btn-primary text-uppercase js-scroll-trigger rounded-right" href="alterar_saida.php">Saída Manual</a>';
+						 	}
+						?>
+					</div>
+					<?php
  						if ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '3') {
  							echo '<a class="btn btn-primary text-uppercase js-scroll-trigger rounded" href="entrada.php">Registrar Entrada/Saida</a>';
  						}

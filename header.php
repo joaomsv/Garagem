@@ -33,7 +33,7 @@
           if (strpos($_SESSION['url'], "alterar_saida.php") === false && ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '2'))
           {
             echo '<li class="nav-item">
-                    <a class="nav-link" href="alterar_saida.php">Alterar Saída</a>
+                    <a class="nav-link" href="alterar_saida.php">Saída Manual</a>
                   </li>';
           }
           if (strpos($_SESSION['url'], "entrada.php") === false && ($_SESSION['user_role_id'] == '1' || $_SESSION['user_role_id'] == '3'))
