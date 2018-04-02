@@ -73,30 +73,30 @@
 							<div class="wrap-input100 " data-validate="Entre com o Ano">
 								<?php
                   require 'conexao.php';
-                  $sql = "SELECT DISTINCT YEAR(data_hora_saida) FROM `entrada` WHERE 1";
+                  $sql = "SELECT DISTINCT YEAR(data_hora_entrada) FROM `entrada` WHERE status = 0";
                   $result = mysqli_query($conn, $sql);
                   echo "<select required class='form-control input100' id ='ano' name='ano'>";
                   echo "<option value=''>Selecione o ano</option>";
                   while ($row = mysqli_fetch_array($result)) {
-                    echo "<option value='" . $row['YEAR(data_hora_saida)'] . "'>" . $row['YEAR(data_hora_saida)'] . "</option>";
+                    echo "<option value='" . $row['YEAR(data_hora_entrada)'] . "'>" . $row['YEAR(data_hora_entrada)'] . "</option>";
                   }
                   echo "</select>";
                 ?>
 							</div>
 
 							<label class="label-input100" for="Sala">Sala *</label>
-							<select required class='form-control input100' id='salarelatorio' name='salarelatorio'>
-							<option value=1>Selecione uma sala</option>
+							<select required class='form-control input100' id='sala_alterar' name='sala_alterar'>
+							<option value=1>Esperando informações ... </option>
 							</select>
 
 							<label class="label-input100" for="Mes">Mes *</label>
-							<select required class='form-control input100' id='mes' name='mes'>
-							<option value=''>Selecione um Mês</option>
+							<select required class='form-control input100' id='mes_alterar' name='mes_alterar'>
+							<option value=''>Esperando informações ...</option>
 							</select>
 
 							<label class="label-input100" for="Dia">Dia *</label>
-							<select required class='form-control input100' id='dia' name='dia'>
-							<option value=''>Selecione um Dia</option>
+							<select required class='form-control input100' id='dia_alterar' name='dia_alterar'>
+							<option value=''>Esperando informações ...</option>
 							</select>
 
 							<label class="label-input100" for="Placa">Placa *</label>
@@ -126,7 +126,7 @@
 
 						<div class="container-contact100-form-btn">
 							<button class="contact100-form-btn">
-								Registar Saída
+								Registrar Saída
 							</button>
 						</div>
 					</form>
@@ -166,6 +166,75 @@
 		    $("#saida").hide();
 		    $("#barcode-saida").show();
 		});
+
+
+    $('#ano').on('change',function(){
+        var anoID = $(this).val();
+        if(anoID){
+            $.ajax({
+                type:'POST',
+                url:'ajaxDataAlterarSaidaSala.php',
+                data:'ano='+anoID,
+                success:function(html){
+                    $('#sala_alterar').html(html);
+                }
+            });
+            $.ajax({
+                type:'POST',
+                url:'ajaxDataAlterarSaidaMes.php',
+                data:'ano='+anoID,
+                success:function(html){
+                    $('#mes_alterar').html(html);
+                }
+            });
+        }
+    });
+    $('#sala_alterar').on('change',function(){
+        var salarelatorioID = $(this).val();
+        var ano = $('#ano').val()
+        if(salarelatorioID){
+            $.ajax({
+                type:'POST',
+                url:'ajaxDataAlterarSaidaMes.php',
+                data:{salarelatorio:salarelatorioID, ano:ano},
+                success:function(html){
+                    $('#mes_alterar').html(html);
+                }
+            });
+        }
+    });
+    $('#mes_alterar').on('change',function(){
+        var mesID = $(this).val();
+        var salarelatorio = $('#sala_alterar').val();
+        if(mesID){
+            $.ajax({
+                type:'POST',
+                url:'ajaxDataAlterarSaidaDia.php',
+                data:{mes:mesID, salarelatorio:salarelatorio},
+                success:function(html){
+                    $('#dia_alterar').html(html);
+                }
+            });
+        }
+    });
+
+    $('#dia_alterar').on('change',function(){
+        var diaID = $(this).val();
+        var sala_alterar_saida = $('#sala_alterar').val();
+        var anoID = $('#ano').val();
+        var mesID = $('#mes_alterar').val();
+        if(mesID){
+            $.ajax({
+                type:'POST',
+                url:'ajaxDataAlterarSaida.php',
+                data:{dia:diaID, sala:sala_alterar_saida, ano:anoID, mes:mesID},
+                success:function(html){
+                    $('#placa_saida').html(html);
+                }
+            });
+        }
+    });
+
 
 	</script>
 
