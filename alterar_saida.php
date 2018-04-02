@@ -47,18 +47,15 @@
 	<div class="container-contact100">
 		<div class="wrap-contact200" style="background-image: url('images/predio01.jpg'); background-size: cover;">
 			<div class="col">
-				<div class="row" style="width:97%">
-					<div class="btn-group btn-group-justified btn-group-toggle" data-toggle="buttons" id="rad-saida">
-						<label class="btn btn-secondary active" id="btn-barcode">
-							<input type="radio" name="options" checked> Codigo de Barra
-						</label>
-						<label class="btn btn-secondary" id="list">
-							<input type="radio" name="options"> Lista de Placa
-						</label>
-					</div>
-				</div>
-
 					<div class="card card-body">
+            <div class="btn-group btn-group-toggle mx-auto" role="group" data-toggle="buttons" id="rad-saida">
+              <label class="btn btn-secondary active" id="btn-barcode">
+                <input type="radio" name="options" checked> Codigo de Barra
+              </label>
+              <label class="btn btn-secondary" id="list">
+                <input type="radio" name="options"> Lista de Placa
+              </label>
+  					</div>
 						<form autocomplete="off" class="contact100-form validate-form" id="saida" name="saida" method="post" action="alterar_saida_update.php">
 							<span class="contact100-form-title">
 								Saída Fora do Horário
